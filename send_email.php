@@ -1,44 +1,4 @@
-<?php
-header('Content-Type: application/json');
-
-// Terima data JSON
-$data = json_decode(file_get_contents('php://input'), true);
-
-// Validasi input
-if (!isset($data['name']) || !isset($data['email']) || !isset($data['subject']) || !isset($data['message'])) {
-    echo json_encode(['success' => false, 'message' => 'Semua field harus diisi']);
-    exit;
-}
-
-// Sanitasi input
-$name = filter_var($data['name'], FILTER_SANITIZE_STRING);
-$email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
-$subject = filter_var($data['subject'], FILTER_SANITIZE_STRING);
-$message = filter_var($data['message'], FILTER_SANITIZE_STRING);
-
-// Validasi email
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(['success' => false, 'message' => 'Email tidak valid']);
-    exit;
-}
-
-// Email tujuan (ganti dengan email Anda)
-$to = "nizamkeren1234@gmail.com"; // Ganti dengan email Anda
-
-// Persiapkan pesan email
-$email_content = "Nama: $name\n";
-$email_content .= "Email: $email\n";
-$email_content .= "Pesan:\n$message";
-
-// Header email
-$headers = "From: $email\r\n";
-$headers .= "Reply-To: $email\r\n";
-$headers .= "X-Mailer: PHP/" . phpversion();
-
-// Kirim email
-if (mail($to, $subject, $email_content, $headers)) {
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Gagal mengirim email']);
-}
-?>
+<script>
+<!-- code by https://www.html-code-generator.com -->
+document.write(unescape('%3C%3Fphp%0Aheader%28%27Content-Type%3A%20application/json%27%29%3B%0A%0A//%20Terima%20data%20JSON%0A%24data%20%3D%20json_decode%28file_get_contents%28%27php%3A//input%27%29%2C%20true%29%3B%0A%0A//%20Validasi%20input%0Aif%20%28%21isset%28%24data%5B%27name%27%5D%29%20%7C%7C%20%21isset%28%24data%5B%27email%27%5D%29%20%7C%7C%20%21isset%28%24data%5B%27subject%27%5D%29%20%7C%7C%20%21isset%28%24data%5B%27message%27%5D%29%29%20%7B%0A%20%20%20%20echo%20json_encode%28%5B%27success%27%20%3D%3E%20false%2C%20%27message%27%20%3D%3E%20%27Semua%20field%20harus%20diisi%27%5D%29%3B%0A%20%20%20%20exit%3B%0A%7D%0A%0A//%20Sanitasi%20input%0A%24name%20%3D%20filter_var%28%24data%5B%27name%27%5D%2C%20FILTER_SANITIZE_STRING%29%3B%0A%24email%20%3D%20filter_var%28%24data%5B%27email%27%5D%2C%20FILTER_SANITIZE_EMAIL%29%3B%0A%24subject%20%3D%20filter_var%28%24data%5B%27subject%27%5D%2C%20FILTER_SANITIZE_STRING%29%3B%0A%24message%20%3D%20filter_var%28%24data%5B%27message%27%5D%2C%20FILTER_SANITIZE_STRING%29%3B%0A%0A//%20Validasi%20email%0Aif%20%28%21filter_var%28%24email%2C%20FILTER_VALIDATE_EMAIL%29%29%20%7B%0A%20%20%20%20echo%20json_encode%28%5B%27success%27%20%3D%3E%20false%2C%20%27message%27%20%3D%3E%20%27Email%20tidak%20valid%27%5D%29%3B%0A%20%20%20%20exit%3B%0A%7D%0A%0A//%20Email%20tujuan%20%28ganti%20dengan%20email%20Anda%29%0A%24to%20%3D%20%22nizamkeren1234@gmail.com%22%3B%20//%20Ganti%20dengan%20email%20Anda%0A%0A//%20Persiapkan%20pesan%20email%0A%24email_content%20%3D%20%22Nama%3A%20%24name%5Cn%22%3B%0A%24email_content%20.%3D%20%22Email%3A%20%24email%5Cn%22%3B%0A%24email_content%20.%3D%20%22Pesan%3A%5Cn%24message%22%3B%0A%0A//%20Header%20email%0A%24headers%20%3D%20%22From%3A%20%24email%5Cr%5Cn%22%3B%0A%24headers%20.%3D%20%22Reply-To%3A%20%24email%5Cr%5Cn%22%3B%0A%24headers%20.%3D%20%22X-Mailer%3A%20PHP/%22%20.%20phpversion%28%29%3B%0A%0A//%20Kirim%20email%0Aif%20%28mail%28%24to%2C%20%24subject%2C%20%24email_content%2C%20%24headers%29%29%20%7B%0A%20%20%20%20echo%20json_encode%28%5B%27success%27%20%3D%3E%20true%5D%29%3B%0A%7D%20else%20%7B%0A%20%20%20%20echo%20json_encode%28%5B%27success%27%20%3D%3E%20false%2C%20%27message%27%20%3D%3E%20%27Gagal%20mengirim%20email%27%5D%29%3B%0A%7D%0A%3F%3E'));
+</script>
