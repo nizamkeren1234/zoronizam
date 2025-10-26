@@ -1,148 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">  
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />  
-  <title>AboutMe - Nizam Zoro</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nizam Portfolio's</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- AOS Animation -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-    *{padding:0;margin:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
-    body{background:#000;color:white;overflow-x:hidden;}
-
-    /* NAVIGATION */
-    nav{display:flex;justify-content:space-between;align-items:center;height:10vh;padding:0 2rem;background:rgba(0,0,0,0.8);backdrop-filter:blur(5px);position:fixed;top:0;left:0;right:0;z-index:999;}
-    .logo{font-size:2rem;font-weight:bold;color:white;}
-    .logo span{color:rgb(58,211,3);}
-    .links{display:flex;gap:1.5rem;}
-    .links a{color:white;text-decoration:none;font-weight:500;}
-    .links a:hover,.links .active{color:rgb(58,211,3);}
-    .hamburg{font-size:2rem;color:white;cursor:pointer;display:none;}
-    .cancel{font-size:2.2rem;color:white;cursor:pointer;position:absolute;top:20px;right:25px;}
-
-    /* DROPDOWN */
-    .dropdown{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      bottom:0;
-      background:rgba(0,0,0,0.9);
-      backdrop-filter:blur(5px);
-      transform:translateY(-100%);
-      transition:.3s;
-      z-index:1000;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:1.5rem;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
     }
-    .dropdown a{
-      color:white;
-      font-size:1.3rem;
-      text-decoration:none;
-      transition:.3s;
+
+    body {
+      background: radial-gradient(circle at top, #0a0a0a, #000);
+      color: white;
+      overflow-x: hidden;
     }
-    .dropdown a:hover{color:rgb(58,211,3);}
 
-    /* MAIN CONTENT */
-    .about-container{margin-top:12vh;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:90vh;padding:2rem;}
-    .about-content{width:80%;max-width:1000px;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);padding:2rem;border-radius:20px;box-shadow:0 0 10px rgb(58,211,3);}
-    .about-header{text-align:center;margin-bottom:1.5rem;}
-    .about-header h1{font-size:2.2rem;color:rgb(58,211,3);}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
-    .about-image img{width:100%;border-radius:20px;}
-    .about-text p{line-height:1.6;margin-bottom:1rem;}
-    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1rem;}
-    .stat-item{background:rgba(58,211,3,0.1);border:1px solid rgb(58,211,3);border-radius:10px;padding:1rem;text-align:center;cursor:pointer;transition:.2s;}
-    .stat-item:hover{background:rgba(58,211,3,0.3);}
-    .stat-item h3{color:rgb(58,211,3);}
-    .content-card{background:rgba(255,255,255,0.05);padding:1rem;border-radius:10px;margin-bottom:1rem;}
-    .card-info h3{color:rgb(58,211,3);}
-    .card-image img{width:80px;height:80px;border-radius:50%;margin-bottom:.5rem;}
-    .award-icon i{color:rgb(58,211,3);font-size:1.8rem;margin-bottom:.5rem;}
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      z-index: 1000;
+    }
 
-    @media(max-width:850px){
-      .links{display:none;}
-      .hamburg{display:block;}
-      .logo{font-size:1.7rem;}
-      .about-grid{grid-template-columns:1fr;}
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 16px;
+      color: #00ffff;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00ffff;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: rgba(0,0,0,0.95);
+        width: 200px;
+        border-left: 2px solid #00ffff;
+        padding: 10px;
+      }
+      nav ul.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    section {
+      padding: 100px 30px 50px;
+      text-align: center;
+    }
+
+    .content-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00ffff;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px auto;
+      max-width: 600px;
+      transition: transform 0.3s;
+    }
+
+    .content-card:hover {
+      transform: scale(1.03);
+    }
+
+    .content-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+
+    .period {
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <audio autoplay loop hidden>
+  <!-- Musik autoplay -->
+  <audio autoplay loop>
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">Nizam<span>Zoro</span></div>
-    <div class="links">
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-      <a href="skill.html">Skills</a>
-      <a href="service.html">Service</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
-  </nav>
+  <header>
+    <div class="logo">NIZAM PORTFOLIO</div>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#awards">Awards</a></li>
+      </ul>
+      <i class="fas fa-bars hamburger" id="hamburger"></i>
+    </nav>
+  </header>
 
-  <!-- DROPDOWN MENU -->
-  <div class="dropdown" id="menuDropdown">
-    <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="skill.html">Skills</a>
-    <a href="service.html">Service</a>
-    <a href="contact.html">Contact</a>
-  </div>
+  <section id="home">
+    <h1 data-aos="fade-up">Welcome to My Portfolio</h1>
+    <p data-aos="fade-up">Explore my work, achievements, and experiences below.</p>
+  </section>
 
-  <!-- ABOUT -->
-  <div class="about-container">
-    <div class="about-content" id="aboutContent">
-      <div class="about-header"><h1>About Me</h1></div>
-      <div class="about-grid">
-        <div class="about-image" data-aos="fade-right">
-          <img src="img/zoro.jpg" alt="Zoro">
-        </div>
-        <div class="about-text" data-aos="fade-left">
-          <p>Olaa, my name is Nizam. I'm 14 years old and passionate about technology and design!</p>
-          <p>I love exploring front-end development, animations, and creative coding.</p>
+  <section id="about">
+    <h2 data-aos="fade-up">About Me</h2>
+    <p data-aos="fade-up">Hi, I'm Nizam — a passionate Frontend Developer & Designer who loves crafting modern and dynamic web experiences.</p>
+  </section>
 
-          <div class="stats">
-            <div class="stat-item" onclick="showProjects()"><h3>10+</h3><p>Projects Completed</p></div>
-            <div class="stat-item" onclick="showExperience()"><h3>1+</h3><p>Years Experience</p></div>
-            <div class="stat-item" onclick="showClients()"><h3>15+</h3><p>Happy Clients</p></div>
-            <div class="stat-item" onclick="showAwards()"><h3>5+</h3><p>Awards Won</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <section id="experience">
+    <h2 data-aos="fade-up">Experience</h2>
+    <div id="experienceContainer"></div>
+  </section>
 
-  <!-- SCRIPT -->
+  <section id="clients">
+    <h2 data-aos="fade-up">Clients</h2>
+    <div id="clientsContainer"></div>
+  </section>
+
+  <section id="awards">
+    <h2 data-aos="fade-up">Awards</h2>
+    <div id="awardsContainer"></div>
+  </section>
+
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
-    AOS.init({offset:0});
+    AOS.init();
 
-    // fungsi hamburger & cancel
-    function hamburg() {
-      document.getElementById("menuDropdown").style.transform = "translateY(0)";
-    }
-    function cancel() {
-      document.getElementById("menuDropdown").style.transform = "translateY(-100%)";
-    }
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
 
-    // fungsi show content (sama seperti versi sebelumnya)
+    // Fungsi untuk generate isi konten
     function generateExperienceCards() {
       const experiences = [
-        {title:"Web Developer", company:"Tech Solutions Inc.", period:"2025 - Present", description:"Leading frontend development team and implementing modern web solutions"},
-        {title:"Frontend Developer", company:"Digital Agency", period:"2025", description:"Developed responsive websites and web applications"}
+        {
+          title: "Web Developer",
+          company: "Tech Solutions Inc.",
+          period: "2025 - Present",
+          description: "Leading frontend development team and implementing modern web solutions"
+        },
+        {
+          title: "Frontend Developer",
+          company: "Digital Agency",
+          period: "2025",
+          description: "Developed responsive websites and web applications"
+        }
       ];
       return experiences.map(exp => `
         <div class="content-card" data-aos="fade-up">
@@ -152,62 +207,69 @@
             <p class="period">${exp.period}</p>
             <p>${exp.description}</p>
           </div>
-        </div>`).join('');
+        </div>
+      `).join('');
     }
 
     function generateClientCards() {
       const clients = [
-        {name:"Ell Udin", company:"Innovation Corp", image:"img/zoro.jpg", testimonial:"Outstanding work on our company website redesign!"},
-        {name:"Ell Ucup", company:"Tech Startup", image:"img/zoro.jpg", testimonial:"Delivered our app ahead of schedule with excellent quality"}
+        {
+          name: "Ell Udin",
+          company: "Innovation Corp",
+          image: "img/zoro.jpg",
+          testimonial: "Outstanding work on our company website redesign!"
+        },
+        {
+          name: "Ell Ucup",
+          company: "Tech Startup",
+          image: "img/zoro.jpg",
+          testimonial: "Delivered our app ahead of schedule with excellent quality"
+        }
       ];
       return clients.map(client => `
         <div class="content-card" data-aos="fade-up">
-          <div class="card-image"><img src="${client.image}" alt="${client.name}"></div>
-          <div class="card-info"><h3>${client.name}</h3><h4>${client.company}</h4><p>"${client.testimonial}"</p></div>
-        </div>`).join('');
+          <img src="${client.image}" alt="${client.name}">
+          <div class="card-info">
+            <h3>${client.name}</h3>
+            <h4>${client.company}</h4>
+            <p>"${client.testimonial}"</p>
+          </div>
+        </div>
+      `).join('');
     }
 
     function generateAwardCards() {
       const awards = [
-        {title:"Best Web Design", organization:"Design Awards 2023", description:"Recognition for exceptional web design and user experience"},
-        {title:"Innovation Award", organization:"2025", description:"Awarded for finding bugs on a school's official website"}
+        {
+          title: "Best Web Design",
+          organization: "Design Awards 2023",
+          description: "Recognition for exceptional web design and user experience"
+        },
+        {
+          title: "Innovation Award",
+          organization: "2025",
+          description: "Received an award from another school for finding bugs on the school's own website"
+        }
       ];
       return awards.map(award => `
         <div class="content-card" data-aos="fade-up">
           <div class="card-info">
-            <div class="award-icon"><i class="fas fa-trophy"></i></div>
-            <h3>${award.title}</h3><h4>${award.organization}</h4><p>${award.description}</p>
+            <div class="award-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <h3>${award.title}</h3>
+            <h4>${award.organization}</h4>
+            <p>${award.description}</p>
           </div>
-        </div>`).join('');
+        </div>
+      `).join('');
     }
 
-    function showProjects(){
-      document.getElementById("aboutContent").innerHTML=`
-        <div class='about-header'><h1>My Projects</h1></div>
-        <p>Coming soon... stay tuned!</p>
-        <button onclick='location.reload()'>⬅ Back</button>`;
-    }
-
-    function showExperience(){
-      document.getElementById("aboutContent").innerHTML=`
-        <div class='about-header'><h1>Experience</h1></div>
-        ${generateExperienceCards()}
-        <button onclick='location.reload()'>⬅ Back</button>`;
-    }
-
-    function showClients(){
-      document.getElementById("aboutContent").innerHTML=`
-        <div class='about-header'><h1>Clients</h1></div>
-        ${generateClientCards()}
-        <button onclick='location.reload()'>⬅ Back</button>`;
-    }
-
-    function showAwards(){
-      document.getElementById("aboutContent").innerHTML=`
-        <div class='about-header'><h1>Awards</h1></div>
-        ${generateAwardCards()}
-        <button onclick='location.reload()'>⬅ Back</button>`;
-    }
+    // Tampilkan otomatis ke HTML
+    document.getElementById("experienceContainer").innerHTML = generateExperienceCards();
+    document.getElementById("clientsContainer").innerHTML = generateClientCards();
+    document.getElementById("awardsContainer").innerHTML = generateAwardCards();
   </script>
+
 </body>
 </html>
