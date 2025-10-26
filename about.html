@@ -10,7 +10,122 @@
       Versi 6.5.1 dipilih untuk fitur dan ikon terbaru 
     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Pengaturan karakter encoding untuk mendukung semua karakter Unicode -->
+    <meta charset="UTF-8">
+    <!-- Pengaturan viewport untuk responsivitas pada perangkat mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 
+      Import Font Awesome untuk ikon sosial media dan navigasi
+      Versi 6.5.1 dipilih untuk fitur dan ikon terbaru 
+    -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 
+      Import AOS (Animate On Scroll) library
+      Digunakan untuk membuat animasi scroll yang menarik 
+    -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Import file CSS custom untuk styling tambahan -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Nizam Zoro - Website</title>
+</head>
+<body>
+    <!-- ====== BACKGROUND MUSIC AUTO PLAY ====== -->
+    <audio id="bg-music" src="music/background.mp3" autoplay loop hidden></audio>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const music = document.getElementById("bg-music");
+        const playPromise = music.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Jika browser blokir autoplay, mainkan setelah user klik di mana saja
+            document.body.addEventListener("click", () => music.play(), { once: true });
+          });
+        }
+      });
+    </script>
+    <!-- ====== END BACKGROUND MUSIC ====== -->
+
+    <!-- Navigation Section -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Nizam <span>Zoro</span>
+            </div>
+            <div class="links">
+                <div class="link active" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a
+                        href="index.html">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a
+                        href="about.html">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><a
+                        href="skill.html">Skills</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"><a
+                        href="service.html">Service</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a
+                        href="contact.html">Contact</a></div>
+            </div>
+        </div>
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skill.html">Skills</a>
+                <a href="service.html">Service</a>
+                <a href="contact.html">Contact</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Section -->
+    <section>
+        <div class="main-container">
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">Hey I'm <span>Nizam</span></h1>
+                <div data-aos="fade-right" data-aos-duration="1500" data-aos-delay="900" class="typewriter">I'm a <span
+                        class="typewriter-text"></span><label for="">|</label></div>
+                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Ut fuga officiis corrupti tempora, sapiente a quae alias suscipit
+                    ratione? Eaque obcaecati a ea accusamus sint dignissimos delectus maxime porro tempore!</p>
+                <div class="social-links">
+                    <a href="https://wa.me/6283836803196" target="_blank" data-aos="fade-up"
+                        data-aos-duration="1500" data-aos-delay="1300">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="https://github.com/nizamkeren1234" target="_blank" data-aos="fade-up"
+                        data-aos-duration="1500" data-aos-delay="1400">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.instagram.com/nijamgatwu" target="_blank" data-aos="fade-up"
+                        data-aos-duration="1500" data-aos-delay="1500">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://t.me/DedekNzm" target="_blank" data-aos="fade-up"
+                        data-aos-duration="1500" data-aos-delay="1600">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                </div>
+                <div class="btn" data-aos="zoom-out" data-aos-duration="1500" data-aos-delay="1800">
+                    <button>Download CV</button>
+                </div>
+            </div>
+            <div class="image" data-aos="zoom-in" data-aos-duration="3000">
+                <img src="img/zoro.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- Script Imports -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 0 });
+    </script>
+    <script src="./js/script.js"></script>
+</body>
+</html> 
       Import AOS (Animate On Scroll) library
       Digunakan untuk membuat animasi scroll yang menarik 
     -->
