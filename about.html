@@ -1,275 +1,342 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nizam Portfolio's</title>
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">  
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />  
+    <style>  
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");  
+        * {  
+            padding: 0;  
+            margin: 0;  
+            font-family: "Poppins", sans-serif;  
+            box-sizing: border-box;  
+        }  
+        body {  
+            width: 100%;  
+            min-height: 100vh;  
+            background-image: url("./img/background.jpg");  
+            background-size: cover;  
+            overflow-x: hidden;  
+            position: relative;  
+        }  
+        nav {  
+            width: 100%;  
+            height: 10vh;  
+            position: relative;  
+            z-index: 1000;  
+        }  
+        .nav-container {  
+            width: 100%;  
+            height: 100%;  
+            display: flex;  
+            justify-content: space-around;  
+            align-items: center;  
+        }  
+        .logo {  
+            color: white;  
+            font-size: 2rem;  
+            font-weight: bold;  
+        }  
+        .logo span {  
+            color: rgb(58, 211, 3);  
+            text-shadow: 0 0 10px rgb(58, 211, 3);  
+        }  
+        .hamburg,  
+        .cancel {  
+            cursor: pointer;  
+            position: absolute;  
+            right: 15px;  
+            top: 10px;  
+            color: white;  
+            display: none;  
+            font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);  
+        }  
+        .nav-container .links {  
+            display: flex;  
+        }  
+        .nav-container .links a {  
+            font-size: 1.2rem;  
+            color: white;  
+            margin: 0 20px;  
+            text-decoration: none;  
+            font-weight: 550;  
+            transition: 0.3s linear;  
+        }  
+        .nav-container .links a:hover {  
+            color: rgb(58, 211, 3);  
+            border-bottom: 2px solid rgb(58, 211, 3);  
+        }  
+        .nav-container .links .active {  
+            color: rgb(58, 211, 3);  
+            border-bottom: 2px solid rgb(58, 211, 3);  
+        }  
+        .dropdown {  
+            z-index: 1000;  
+            position: fixed;  
+            top: 0;  
+            left: 0;  
+            right: 0;  
+            transform: translateY(-500px);  
+            width: 100%;  
+            backdrop-filter: blur(4px) brightness(40%);  
+            box-shadow: 0 0 20px black;  
+            transition: 0.2s linear;  
+        }  
+        .dropdown .links a {  
+            display: flex;  
+            color: white;  
+            text-decoration: none;  
+            padding: 15px 0;  
+            justify-content: center;  
+            align-items: center;  
+            transition: 0.2s linear;  
+        }  
+        .dropdown .links a:hover {  
+            background-color: rgb(58, 211, 3);  
+        }  
+        .about-container {  
+            width: 100%;  
+            min-height: 90vh;  
+            display: flex;  
+            justify-content: center;  
+            align-items: center;  
+            padding: 2rem;  
+            position: relative;  
+            z-index: 1;  
+        }  
+        .about-content {  
+            width: 80%;  
+            max-width: 1200px;  
+            background: rgba(0, 0, 0, 0.7);  
+            backdrop-filter: blur(10px);  
+            border-radius: 20px;  
+            padding: 3rem;  
+            color: white;  
+        }  
+        .about-header {  
+            text-align: center;  
+            margin-bottom: 2rem;  
+        }  
+        .about-header h1 {  
+            font-size: 2.5rem;  
+            color: rgb(58, 211, 3);  
+            text-shadow: 0 0 10px rgb(58, 211, 3);  
+        }  
+        .about-grid {  
+            display: grid;  
+            grid-template-columns: 1fr 1fr;  
+            gap: 2rem;  
+        }  
+        .about-image {  
+            width: 100%;  
+            aspect-ratio: 1;  
+            border-radius: 20px;  
+            overflow: hidden;  
+            box-shadow: 0 0 20px rgb(58, 211, 3);  
+        }  
+        .about-image img {  
+            width: 100%;  
+            height: 100%;  
+            object-fit: cover;  
+        }  
+        .about-text h2 {  
+            color: rgb(58, 211, 3);  
+            margin-bottom: 1rem;  
+        }  
+        .about-text p {  
+            line-height: 1.6;  
+            margin-bottom: 1rem;  
+        }  
+        .stats {  
+            display: grid;  
+            grid-template-columns: repeat(2, 1fr);  
+            gap: 1rem;  
+            margin-top: 2rem;  
+        }  
+        .stat-item {  
+            background: rgba(58, 211, 3, 0.1);  
+            padding: 1rem;  
+            border-radius: 10px;  
+            text-align: center;  
+            border: 1px solid rgb(58, 211, 3);  
+            cursor: pointer;  
+        }  
+        .stat-item h3 {  
+            color: rgb(58, 211, 3);  
+            font-size: 1.5rem;  
+        }  
+        .back-button {  
+            display: inline-block;  
+            padding: 0.8rem 1.5rem;  
+            background: rgb(58, 211, 3);  
+            color: white;  
+            border-radius: 5px;  
+            text-decoration: none;  
+            margin-bottom: 2rem;  
+        }  
+        @media (max-width: 884px) {  
+            .about-grid { grid-template-columns: 1fr; }  
+            nav .logo { position: absolute; top: 16px; left: 15px; font-size: 1.5rem; }  
+            .nav-container .links { display: none; }  
+            .hamburg, .cancel { display: block; }  
+        }  
+    </style>  
+    <title>AboutMe - Nizam Zoro</title>  
+</head>  
+<body>  
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 🎵 Musik autoplay di background -->
+    <audio id="bg-music" src="music.mp3" autoplay loop></audio>
 
-  <!-- AOS Animation -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Navigasi -->  
+    <nav>  
+        <div class="nav-container">  
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">  
+                Nizam<span>Zoro</span>  
+            </div>  
+            <div class="links">  
+                <a href="index.html">Home</a>  
+                <a href="about.html" class="active">About</a>  
+                <a href="skill.html">Skills</a>  
+                <a href="service.html">Service</a>  
+                <a href="contact.html">Contact</a>  
+            </div>  
+        </div>  
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>  
+        <div class="dropdown">  
+            <div class="links">  
+                <a href="index.html">Home</a>  
+                <a href="about.html">About</a>  
+                <a href="skill.html">Skills</a>  
+                <a href="service.html">Service</a>  
+                <a href="contact.html">Contact</a>  
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>  
+            </div>  
+        </div>  
+    </nav>  
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Orbitron', sans-serif;
-    }
+    <!-- Konten About -->
+    <div class="about-container">  
+        <div class="about-content" id="aboutContent">  
+            <div class="about-header" data-aos="fade-down" data-aos-duration="1500">  
+                <h1>About Me</h1>  
+            </div>  
+            <div class="about-grid">  
+                <div class="about-image" data-aos="fade-right" data-aos-duration="1500">  
+                    <img src="img/zoro.jpg" alt="About Image">  
+                </div>  
+                <div class="about-text" data-aos="fade-left" data-aos-duration="1500">  
+                    <h2>Who Am I?</h2>  
+                    <p>Olaa, my name is Nizam, I'm 14 years old and in 9th grade. Passionate in technology & design. 🥨</p>  
+                    <p>My journey in technology began with a simple curiosity and has evolved into a professional pursuit of excellence in digital craftsmanship.</p>  
+                    <div class="stats">  
+                        <div class="stat-item" onclick="showProjects()"><h3>10+</h3><p>Projects Completed</p></div>  
+                        <div class="stat-item" onclick="showExperience()"><h3>1+</h3><p>Years Experience</p></div>  
+                        <div class="stat-item" onclick="showClients()"><h3>15+</h3><p>Happy Clients</p></div>  
+                        <div class="stat-item" onclick="showAwards()"><h3>5+</h3><p>Awards Won</p></div>  
+                    </div>  
+                </div>  
+            </div>  
+        </div>  
+    </div>  
 
-    body {
-      background: radial-gradient(circle at top, #0a0a0a, #000);
-      color: white;
-      overflow-x: hidden;
-    }
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>  
+    <script>  
+        AOS.init({ offset: 0 });  
 
-    header {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      z-index: 1000;
-    }
+        // Navbar
+        function hamburg() { document.querySelector(".dropdown").style.transform = "translateY(0px)"; }
+        function cancel() { document.querySelector(".dropdown").style.transform = "translateY(-500px)"; }
 
-    .logo {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 16px;
-      color: #00ffff;
-      letter-spacing: 2px;
-    }
+        // Autoplay workaround untuk browser
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('bg-music');
+            audio.volume = 0.5;
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    document.body.addEventListener('click', () => audio.play(), { once: true });
+                });
+            }
+        });
 
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 20px;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: white;
-      font-size: 14px;
-      transition: color 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #00ffff;
-    }
-
-    .hamburger {
-      display: none;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: rgba(0,0,0,0.95);
-        width: 200px;
-        border-left: 2px solid #00ffff;
-        padding: 10px;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      .hamburger {
-        display: block;
-      }
-    }
-
-    section {
-      padding: 100px 30px 50px;
-      text-align: center;
-    }
-
-    .content-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #00ffff;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 15px auto;
-      max-width: 600px;
-      transition: transform 0.3s;
-    }
-
-    .content-card:hover {
-      transform: scale(1.03);
-    }
-
-    .content-card img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-      object-fit: cover;
-    }
-
-    .period {
-      font-size: 13px;
-      color: #aaa;
-    }
-
-    audio {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Musik autoplay -->
-  <audio autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
-
-  <header>
-    <div class="logo">NIZAM PORTFOLIO</div>
-    <nav>
-      <ul id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#clients">Clients</a></li>
-        <li><a href="#awards">Awards</a></li>
-      </ul>
-      <i class="fas fa-bars hamburger" id="hamburger"></i>
-    </nav>
-  </header>
-
-  <section id="home">
-    <h1 data-aos="fade-up">Welcome to My Portfolio</h1>
-    <p data-aos="fade-up">Explore my work, achievements, and experiences below.</p>
-  </section>
-
-  <section id="about">
-    <h2 data-aos="fade-up">About Me</h2>
-    <p data-aos="fade-up">Hi, I'm Nizam — a passionate Frontend Developer & Designer who loves crafting modern and dynamic web experiences.</p>
-  </section>
-
-  <section id="experience">
-    <h2 data-aos="fade-up">Experience</h2>
-    <div id="experienceContainer"></div>
-  </section>
-
-  <section id="clients">
-    <h2 data-aos="fade-up">Clients</h2>
-    <div id="clientsContainer"></div>
-  </section>
-
-  <section id="awards">
-    <h2 data-aos="fade-up">Awards</h2>
-    <div id="awardsContainer"></div>
-  </section>
-
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <script>
-    AOS.init();
-
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // Fungsi untuk generate isi konten
-    function generateExperienceCards() {
-      const experiences = [
-        {
-          title: "Web Developer",
-          company: "Tech Solutions Inc.",
-          period: "2025 - Present",
-          description: "Leading frontend development team and implementing modern web solutions"
-        },
-        {
-          title: "Frontend Developer",
-          company: "Digital Agency",
-          period: "2025",
-          description: "Developed responsive websites and web applications"
+        // === Semua function tetap utuh ===
+        function showProjects() {
+            const aboutContent = document.getElementById('aboutContent');
+            aboutContent.innerHTML = `<a href="about.html" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
+            <div class="about-header"><h1>My Projects</h1></div>
+            <div class="content-grid">${generateProjectCards()}</div>`;
+            AOS.refresh();
         }
-      ];
-      return experiences.map(exp => `
-        <div class="content-card" data-aos="fade-up">
-          <div class="card-info">
-            <h3>${exp.title}</h3>
-            <h4>${exp.company}</h4>
-            <p class="period">${exp.period}</p>
-            <p>${exp.description}</p>
-          </div>
-        </div>
-      `).join('');
-    }
 
-    function generateClientCards() {
-      const clients = [
-        {
-          name: "Ell Udin",
-          company: "Innovation Corp",
-          image: "img/zoro.jpg",
-          testimonial: "Outstanding work on our company website redesign!"
-        },
-        {
-          name: "Ell Ucup",
-          company: "Tech Startup",
-          image: "img/zoro.jpg",
-          testimonial: "Delivered our app ahead of schedule with excellent quality"
+        function showExperience() {
+            const aboutContent = document.getElementById('aboutContent');
+            aboutContent.innerHTML = `<a href="about.html" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
+            <div class="about-header"><h1>My Experience</h1></div>
+            <div class="content-grid">${generateExperienceCards()}</div>`;
+            AOS.refresh();
         }
-      ];
-      return clients.map(client => `
-        <div class="content-card" data-aos="fade-up">
-          <img src="${client.image}" alt="${client.name}">
-          <div class="card-info">
-            <h3>${client.name}</h3>
-            <h4>${client.company}</h4>
-            <p>"${client.testimonial}"</p>
-          </div>
-        </div>
-      `).join('');
-    }
 
-    function generateAwardCards() {
-      const awards = [
-        {
-          title: "Best Web Design",
-          organization: "Design Awards 2023",
-          description: "Recognition for exceptional web design and user experience"
-        },
-        {
-          title: "Innovation Award",
-          organization: "2025",
-          description: "Received an award from another school for finding bugs on the school's own website"
+        function showClients() {
+            const aboutContent = document.getElementById('aboutContent');
+            aboutContent.innerHTML = `<a href="about.html" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
+            <div class="about-header"><h1>Client Success Stories</h1></div>
+            <div class="content-grid">${generateClientCards()}</div>`;
+            AOS.refresh();
         }
-      ];
-      return awards.map(award => `
-        <div class="content-card" data-aos="fade-up">
-          <div class="card-info">
-            <div class="award-icon">
-              <i class="fas fa-trophy"></i>
-            </div>
-            <h3>${award.title}</h3>
-            <h4>${award.organization}</h4>
-            <p>${award.description}</p>
-          </div>
-        </div>
-      `).join('');
-    }
 
-    // Tampilkan otomatis ke HTML
-    document.getElementById("experienceContainer").innerHTML = generateExperienceCards();
-    document.getElementById("clientsContainer").innerHTML = generateClientCards();
-    document.getElementById("awardsContainer").innerHTML = generateAwardCards();
-  </script>
+        function showAwards() {
+            const aboutContent = document.getElementById('aboutContent');
+            aboutContent.innerHTML = `<a href="about.html" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
+            <div class="about-header"><h1>Awards & Recognition</h1></div>
+            <div class="content-grid">${generateAwardCards()}</div>`;
+            AOS.refresh();
+        }
 
-</body>
+        function generateProjectCards() {
+            const projects = [
+                { title: "E-Commerce Platform", image: "img/zoro.jpg", description: "A full-stack e-commerce solution", technologies: ["React", "Node.js", "MongoDB"] },
+                { title: "Portfolio Website", image: "img/zoro.jpg", description: "Responsive portfolio website", technologies: ["HTML", "CSS", "JavaScript"] },
+                { title: "Task Management App", image: "img/zoro.jpg", description: "Mobile-first task management app", technologies: ["Vue.js", "Firebase"] }
+            ];
+            return projects.map(p => `
+            <div class="content-card"><div class="card-image"><img src="${p.image}"></div>
+            <div class="card-info"><h3>${p.title}</h3><p>${p.description}</p>
+            <div class="technologies">${p.technologies.map(t => `<span class="technology-tag">${t}</span>`).join('')}</div></div></div>`).join('');
+        }
+
+        function generateExperienceCards() {
+            const experiences = [
+                { title: "Web Developer", company: "Tech Solutions Inc.", period: "2025 - Present", description: "Leading frontend development team and implementing modern web solutions" },
+                { title: "Frontend Developer", company: "Digital Agency", period: "2025", description: "Developed responsive websites and web applications" }
+            ];
+            return experiences.map(exp => `
+            <div class="content-card"><div class="card-info"><h3>${exp.title}</h3><h4>${exp.company}</h4>
+            <p class="period">${exp.period}</p><p>${exp.description}</p></div></div>`).join('');
+        }
+
+        function generateClientCards() {
+            const clients = [
+                { name: "Ell Udin", company: "Innovation Corp", image: "img/zoro.jpg", testimonial: "Outstanding work on our company website redesign!" },
+                { name: "Ell Ucup", company: "Tech Startup", image: "img/zoro.jpg", testimonial: "Delivered our app ahead of schedule with excellent quality" }
+            ];
+            return clients.map(c => `
+            <div class="content-card"><div class="card-image"><img src="${c.image}"></div>
+            <div class="card-info"><h3>${c.name}</h3><h4>${c.company}</h4>
+            <p class="client-testimonial">"${c.testimonial}"</p></div></div>`).join('');
+        }
+
+        function generateAwardCards() {
+            const awards = [
+                { title: "Best Web Design", organization: "Design Awards 2023", description: "Recognition for exceptional web design and UX" },
+                { title: "Innovation Award", organization: "2025", description: "Received award for bug-finding on school website" }
+            ];
+            return awards.map(a => `
+            <div class="content-card"><div class="card-info"><div class="award-icon"><i class="fas fa-trophy"></i></div>
+            <h3>${a.title}</h3><h4>${a.organization}</h4><p>${a.description}</p></div></div>`).join('');
+        }
+    </script>  
+</body>  
 </html>
