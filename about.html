@@ -12,13 +12,44 @@
     *{padding:0;margin:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
     body{background:#000;color:white;overflow-x:hidden;}
 
-    nav{display:flex;justify-content:space-around;align-items:center;height:10vh;background:rgba(0,0,0,0.8);backdrop-filter:blur(5px);}
+    /* NAVIGATION */
+    nav{display:flex;justify-content:space-between;align-items:center;height:10vh;padding:0 2rem;background:rgba(0,0,0,0.8);backdrop-filter:blur(5px);position:fixed;top:0;left:0;right:0;z-index:999;}
     .logo{font-size:2rem;font-weight:bold;color:white;}
     .logo span{color:rgb(58,211,3);}
-    .links a{color:white;margin:0 15px;text-decoration:none;}
+    .links{display:flex;gap:1.5rem;}
+    .links a{color:white;text-decoration:none;font-weight:500;}
     .links a:hover,.links .active{color:rgb(58,211,3);}
+    .hamburg{font-size:2rem;color:white;cursor:pointer;display:none;}
+    .cancel{font-size:2.2rem;color:white;cursor:pointer;position:absolute;top:20px;right:25px;}
 
-    .about-container{display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:90vh;padding:2rem;}
+    /* DROPDOWN */
+    .dropdown{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:rgba(0,0,0,0.9);
+      backdrop-filter:blur(5px);
+      transform:translateY(-100%);
+      transition:.3s;
+      z-index:1000;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:1.5rem;
+    }
+    .dropdown a{
+      color:white;
+      font-size:1.3rem;
+      text-decoration:none;
+      transition:.3s;
+    }
+    .dropdown a:hover{color:rgb(58,211,3);}
+
+    /* MAIN CONTENT */
+    .about-container{margin-top:12vh;display:flex;justify-content:center;align-items:center;flex-direction:column;min-height:90vh;padding:2rem;}
     .about-content{width:80%;max-width:1000px;background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);padding:2rem;border-radius:20px;box-shadow:0 0 10px rgb(58,211,3);}
     .about-header{text-align:center;margin-bottom:1.5rem;}
     .about-header h1{font-size:2.2rem;color:rgb(58,211,3);}
@@ -33,17 +64,22 @@
     .card-info h3{color:rgb(58,211,3);}
     .card-image img{width:80px;height:80px;border-radius:50%;margin-bottom:.5rem;}
     .award-icon i{color:rgb(58,211,3);font-size:1.8rem;margin-bottom:.5rem;}
-    @media(max-width:768px){.about-grid{grid-template-columns:1fr;}}
+
+    @media(max-width:850px){
+      .links{display:none;}
+      .hamburg{display:block;}
+      .logo{font-size:1.7rem;}
+      .about-grid{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
 
-  <!-- Musik autoplay -->
   <audio autoplay loop hidden>
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- NAV -->
+  <!-- NAVBAR -->
   <nav>
     <div class="logo">Nizam<span>Zoro</span></div>
     <div class="links">
@@ -53,9 +89,20 @@
       <a href="service.html">Service</a>
       <a href="contact.html">Contact</a>
     </div>
+    <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
   </nav>
 
-  <!-- ABOUT SECTION -->
+  <!-- DROPDOWN MENU -->
+  <div class="dropdown" id="menuDropdown">
+    <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="skill.html">Skills</a>
+    <a href="service.html">Service</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ABOUT -->
   <div class="about-container">
     <div class="about-content" id="aboutContent">
       <div class="about-header"><h1>About Me</h1></div>
@@ -64,8 +111,8 @@
           <img src="img/zoro.jpg" alt="Zoro">
         </div>
         <div class="about-text" data-aos="fade-left">
-          <p>Olaa, my name is Nizam. I'm 14 years old and in 9th grade — passionate about technology and design!</p>
-          <p>I love exploring front-end development, animations, and UI design.</p>
+          <p>Olaa, my name is Nizam. I'm 14 years old and passionate about technology and design!</p>
+          <p>I love exploring front-end development, animations, and creative coding.</p>
 
           <div class="stats">
             <div class="stat-item" onclick="showProjects()"><h3>10+</h3><p>Projects Completed</p></div>
@@ -78,11 +125,20 @@
     </div>
   </div>
 
+  <!-- SCRIPT -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init({offset:0});
 
-    // --- DATA KONTEN ---
+    // fungsi hamburger & cancel
+    function hamburg() {
+      document.getElementById("menuDropdown").style.transform = "translateY(0)";
+    }
+    function cancel() {
+      document.getElementById("menuDropdown").style.transform = "translateY(-100%)";
+    }
+
+    // fungsi show content (sama seperti versi sebelumnya)
     function generateExperienceCards() {
       const experiences = [
         {title:"Web Developer", company:"Tech Solutions Inc.", period:"2025 - Present", description:"Leading frontend development team and implementing modern web solutions"},
@@ -96,8 +152,7 @@
             <p class="period">${exp.period}</p>
             <p>${exp.description}</p>
           </div>
-        </div>
-      `).join('');
+        </div>`).join('');
     }
 
     function generateClientCards() {
@@ -108,13 +163,8 @@
       return clients.map(client => `
         <div class="content-card" data-aos="fade-up">
           <div class="card-image"><img src="${client.image}" alt="${client.name}"></div>
-          <div class="card-info">
-            <h3>${client.name}</h3>
-            <h4>${client.company}</h4>
-            <p class="client-testimonial">"${client.testimonial}"</p>
-          </div>
-        </div>
-      `).join('');
+          <div class="card-info"><h3>${client.name}</h3><h4>${client.company}</h4><p>"${client.testimonial}"</p></div>
+        </div>`).join('');
     }
 
     function generateAwardCards() {
@@ -126,45 +176,37 @@
         <div class="content-card" data-aos="fade-up">
           <div class="card-info">
             <div class="award-icon"><i class="fas fa-trophy"></i></div>
-            <h3>${award.title}</h3>
-            <h4>${award.organization}</h4>
-            <p>${award.description}</p>
+            <h3>${award.title}</h3><h4>${award.organization}</h4><p>${award.description}</p>
           </div>
-        </div>
-      `).join('');
+        </div>`).join('');
     }
 
-    // --- FUNGSI UNTUK MENAMPILKAN DATA ---
-    function showProjects() {
-      document.getElementById("aboutContent").innerHTML = `
-        <div class="about-header"><h1>My Projects</h1></div>
-        <p>Coming soon... stay tuned for awesome works!</p>
-        <button onclick="location.reload()">⬅ Back</button>
-      `;
+    function showProjects(){
+      document.getElementById("aboutContent").innerHTML=`
+        <div class='about-header'><h1>My Projects</h1></div>
+        <p>Coming soon... stay tuned!</p>
+        <button onclick='location.reload()'>⬅ Back</button>`;
     }
 
-    function showExperience() {
-      document.getElementById("aboutContent").innerHTML = `
-        <div class="about-header"><h1>Experience</h1></div>
+    function showExperience(){
+      document.getElementById("aboutContent").innerHTML=`
+        <div class='about-header'><h1>Experience</h1></div>
         ${generateExperienceCards()}
-        <button onclick="location.reload()">⬅ Back</button>
-      `;
+        <button onclick='location.reload()'>⬅ Back</button>`;
     }
 
-    function showClients() {
-      document.getElementById("aboutContent").innerHTML = `
-        <div class="about-header"><h1>Clients</h1></div>
+    function showClients(){
+      document.getElementById("aboutContent").innerHTML=`
+        <div class='about-header'><h1>Clients</h1></div>
         ${generateClientCards()}
-        <button onclick="location.reload()">⬅ Back</button>
-      `;
+        <button onclick='location.reload()'>⬅ Back</button>`;
     }
 
-    function showAwards() {
-      document.getElementById("aboutContent").innerHTML = `
-        <div class="about-header"><h1>Awards</h1></div>
+    function showAwards(){
+      document.getElementById("aboutContent").innerHTML=`
+        <div class='about-header'><h1>Awards</h1></div>
         ${generateAwardCards()}
-        <button onclick="location.reload()">⬅ Back</button>
-      `;
+        <button onclick='location.reload()'>⬅ Back</button>`;
     }
   </script>
 </body>
