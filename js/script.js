@@ -10,7 +10,7 @@ function cancel(){
 // Animasi Menulis
 
 const texts = [
-    "DEVELOPER",
+    "NIZAM",
     "STUDENT",
     "DESIGNER"
 ]
