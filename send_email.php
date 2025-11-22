@@ -23,7 +23,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Email tujuan (ganti dengan email Anda)
-$to = "nizamkeren1234@gmail.com"; // Ganti dengan email Anda
+$to = "makbullahnizam@gmail.com"; // Ganti dengan email Anda
 
 // Persiapkan pesan email
 $email_content = "Nama: $name\n";
